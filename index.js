@@ -5,38 +5,41 @@
 
 
 const options = ["rock", "paper", "scissors"]
-message = "rock, paper, or scissors? type your choice below."
 
+let playerScore = 0
+let computerScore = 0
 
+/* Created a function that randomizes the choices from the array above
+modified the array by option[placing modification inside these brackets]
+Used Math.random which chooses an integer between 0 and 1 (excluding 1) ex. 0.23894 0.12309 etc.
+To sort of increase the number of choices to the number of elements in the array, I multiplied it by the ARRAYS LENGTH with .length
+The numbers are still coming out with decimals so I used Math.floor to ROUND DOWN the number picked.
+logged the variable to the console
+ */
 function getComputerChoice() {
     let computerChoice = options[Math.floor(Math.random() * options.length)]
-    console.log(computerChoice)
     return computerChoice
 }
 
-
 function getPlayerChoice() {
-    let playerChoice = prompt(message)
-    console.log(playerChoice)
+    let message = "rock, paper, or scissors? type your choice below."
+    let playerChoice = prompt(message.toLocaleLowerCase)
     return playerChoice
 }
 
-function playRound(playerChoice, computerChoice) {
-
-    if(playerChoice == "rock" && computerChoice == "scissors" || 
-    playerChoice == "paper" && computerChoice == "rock" ||
-    playerChoice == "scissors" && computerChoice == "rock") {
-        return "You win!"
+function result(getComputerChoice, getPlayerChoice) {
+    if (getPlayerChoice == "rock" && getComputerChoice == "scissors" || 
+    getPlayerChoice == "paper" && getComputerChoice == "rock" ||
+    getPlayerChoice == "scissors" && getComputerChoice == "paper" ) {
+        return "Player"
     }
-    else if(playerChoice === computerChoice) {
-        return "It's a tie!"
-
+    else if (getComputerChoice == getPlayerChoice) {
+        return "Tie"
     }
     else {
-        return "You lose!"
-    }
+        return "Computer"
+    }    
+    
 }
 
-let playerChoice = getPlayerChoice()
-let computerChoice = getComputerChoice()
-console.log(playRound(playerChoice, computerChoice))
+console.log(result(getComputerChoice, getPlayerChoice))
