@@ -2,12 +2,22 @@
 //Player inputs choice
 //Computer and Player choices are compared
 //Winner is determined based on combinations
+//Steps 1-4 are looped 5x
+//results are recorded and scores incremented
 
 
 const options = ["rock", "paper", "scissors"]
-
+let message = "rock, paper, or scissors? type your choice below."
 let playerScore = 0
 let computerScore = 0
+
+
+function getPlayerChoice() {
+    let playerChoice = prompt(message)
+    console.log(playerChoice)
+    return playerChoice
+}
+
 
 /* Created a function that randomizes the choices from the array above
 modified the array by option[placing modification inside these brackets]
@@ -18,28 +28,69 @@ logged the variable to the console
  */
 function getComputerChoice() {
     let computerChoice = options[Math.floor(Math.random() * options.length)]
+    console.log(computerChoice)
     return computerChoice
 }
 
-function getPlayerChoice() {
-    let message = "rock, paper, or scissors? type your choice below."
-    let playerChoice = prompt(message.toLocaleLowerCase)
-    return playerChoice
-}
 
-function result(getComputerChoice, getPlayerChoice) {
-    if (getPlayerChoice == "rock" && getComputerChoice == "scissors" || 
-    getPlayerChoice == "paper" && getComputerChoice == "rock" ||
-    getPlayerChoice == "scissors" && getComputerChoice == "paper" ) {
+
+function result(computerChoice, playerChoice) {
+
+    if (playerChoice == "rock" && computerChoice == "scissors" || 
+    playerChoice == "paper" && computerChoice == "rock" ||
+    playerChoice == "scissors" && computerChoice == "paper" ) {
         return "Player"
     }
-    else if (getComputerChoice == getPlayerChoice) {
+    else if (computerChoice === playerChoice) {
         return "Tie"
     }
     else {
         return "Computer"
     }    
     
+    
 }
 
-console.log(result(getComputerChoice, getPlayerChoice))
+function scoreLog(playerScore, computerScore) {
+
+    let score = result()
+    
+    if (score == "Player") {
+        console.log(playerScore++)
+        return playerScore++
+    }
+    else if (score == "Computer") {
+        console.log(computerScore++)
+        return computerScore++
+    }
+
+}
+
+
+function round() {
+    let computerChoice = getComputerChoice()
+    let playerChoice = getPlayerChoice()
+    console.log(result(playerChoice, computerChoice))
+    return (result(playerChoice, computerChoice))
+
+    
+}
+
+round()
+console.log(scoreLog(playerScore, computerScore))
+
+
+
+
+
+function game() {
+    
+    for (let i = 1; i < 6; i++) {
+        let computerChoice = getComputerChoice()
+        let playerChoice = getPlayerChoice()
+        round(playerChoice,computerChoice)
+        scoreLog()
+    }
+}
+
+
