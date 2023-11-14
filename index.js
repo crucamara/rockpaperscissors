@@ -13,7 +13,7 @@ let computerScore = 0
 
 
 function getPlayerChoice() {
-    let playerChoice = prompt(message)
+    let playerChoice = "scissors"
     console.log(playerChoice)
     return playerChoice
 }
@@ -50,47 +50,39 @@ function result(computerChoice, playerChoice) {
     
     
 }
-
 function scoreLog(playerScore, computerScore) {
 
     let score = result()
     
-    if (score == "Player") {
-        console.log(playerScore++)
-        return playerScore++
+    if (score === "Player") {
+        console.log(playerScore)
+        return playerScore += 1
     }
-    else if (score == "Computer") {
-        console.log(computerScore++)
-        return computerScore++
+    else if (score === "Computer") {
+        console.log(computerScore)
+        return computerScore += 1
     }
 
 }
-
 
 function round() {
     let computerChoice = getComputerChoice()
     let playerChoice = getPlayerChoice()
     console.log(result(playerChoice, computerChoice))
     return (result(playerChoice, computerChoice))
-
     
 }
 
-round()
-console.log(scoreLog(playerScore, computerScore))
 
 
+function game(i) {
 
-
-
-function game() {
-    
     for (let i = 1; i < 6; i++) {
-        let computerChoice = getComputerChoice()
-        let playerChoice = getPlayerChoice()
-        round(playerChoice,computerChoice)
+        round(i)
         scoreLog()
+        console.log(playerScore, computerScore)
+        
     }
 }
 
-
+game()
