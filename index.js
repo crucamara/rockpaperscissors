@@ -13,7 +13,7 @@ let computerScore = 0
 
 
 function getPlayerChoice() {
-    let playerChoice = "scissors"
+    let playerChoice = prompt(message)
     console.log(playerChoice)
     return playerChoice
 }
@@ -36,40 +36,38 @@ function getComputerChoice() {
 
 function result(computerChoice, playerChoice) {
 
-    if (playerChoice == "rock" && computerChoice == "scissors" || 
+    if (computerChoice == playerChoice) {
+        return "Tie"
+
+    }
+    else if (playerChoice == "rock" && computerChoice == "scissors" || 
     playerChoice == "paper" && computerChoice == "rock" ||
     playerChoice == "scissors" && computerChoice == "paper" ) {
-        return "Player"
-    }
-    else if (computerChoice === playerChoice) {
-        return "Tie"
+        
+        return playerScore++, "Player"
     }
     else {
-        return "Computer"
+        
+        return computerScore++, "Computer"
     }    
+   
     
     
 }
-function scoreLog(playerScore, computerScore) {
 
-    let score = result()
-    
-    if (score === "Player") {
-        console.log(playerScore)
-        return playerScore += 1
-    }
-    else if (score === "Computer") {
-        console.log(computerScore)
-        return computerScore += 1
-    }
 
-}
+
+/* Result getting mixed up between if else statements
+Computer win coming out if Player wins, etc
+Fix tomorrow! */
 
 function round() {
     let computerChoice = getComputerChoice()
     let playerChoice = getPlayerChoice()
-    console.log(result(playerChoice, computerChoice))
-    return (result(playerChoice, computerChoice))
+    console.log(result(computerChoice, playerChoice))
+    console.log(playerScore, computerScore)
+    return result(computerChoice, playerChoice)
+     
     
 }
 
@@ -78,10 +76,7 @@ function round() {
 function game(i) {
 
     for (let i = 1; i < 6; i++) {
-        round(i)
-        scoreLog()
-        console.log(playerScore, computerScore)
-        
+        round(i)      
     }
 }
 
