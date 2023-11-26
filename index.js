@@ -28,8 +28,10 @@ logged the variable to the console
  */
 function getComputerChoice() {
     let computerChoice = options[Math.floor(Math.random() * options.length)]
+   if (getPlayerChoice) {
     console.log(computerChoice)
     return computerChoice
+   }
 }
 
 
